@@ -1,0 +1,19 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.suggestSelection": "first",
+    "[vue]": {
+        "editor.defaultFormatter": "octref.vetur"
+    },
+    "git.enableSmartCommit": true,
+    "explorer.confirmDelete": false,
+    "path-intellisense.mappings": {
+        "/": "${workspaceFolder}",
+        "@": "${workspaceFolder}/src",
+        "~@": "${workspaceFolder}/src",
+    },
+    "git.autofetch": true,
+    "git.fetchOnPull": true,
+}
