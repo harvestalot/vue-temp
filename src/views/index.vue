@@ -1,16 +1,29 @@
 <template>
   <div>
-    <div>头部</div>
-    <router-link to="/home">首页</router-link>
-    <router-link to="/list">列表</router-link>
-    <router-view />
-    <div>底部</div>
+    <router-view name='mainheader'/>
+    <el-container>
+      <el-header>
+        
+        <router-link to="/home">首页</router-link>
+        <router-link to="/list">列表</router-link>
+      </el-header>
+      <el-main>
+        <router-view />
+      </el-main>
+      <el-footer>Footer</el-footer>
+    </el-container>
+    <router-view name="mainfooter"/>
   </div>
 </template>
 
 <script>
   export default {
-    name:'Home'
+    name:'Home',
+    data() {
+      return {
+        info: '加载'
+      }
+    },
   }
 </script>
 
