@@ -4,15 +4,15 @@ const state = {
 }
 
 const mutations = {
-  change_name(state, total){
-    state.total = total;
+  change_name(state, step){
+    state.total += step;
   }
 }
 
 const actions = {
-  change_name({ commit, rootState }, total){
+  change_name({ commit, rootState }, step){
     if(!rootState.total){
-      commit('change_name', total);
+      commit('change_name', step);
     }
   }
 }
