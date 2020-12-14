@@ -1,9 +1,11 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
+import { isMobile } from "../utils"
 
 import store from "../store/index.js"
 
 import Index from '../views/index.vue'
+import MobileHome from '../views/M/index.vue';
 // import Header from '../components/Header/index.vue'
 // import Footer from '../components/Footer/index.vue'
 
@@ -37,7 +39,7 @@ const router = new VueRouter({
           path:'list',
           name:'List',
           component: () => import('@/views/List/index.vue')
-        }
+        },
       ]
     },
     {
@@ -50,6 +52,11 @@ const router = new VueRouter({
       },
     },
     {
+      path: '/m',
+      name: 'm.Home',
+      component: MobileHome
+    },
+    {
       path:'*',
       name:'404',
       component: () => import('@/views/404.vue')
@@ -57,6 +64,14 @@ const router = new VueRouter({
   ],
 });
 router.beforeEach((to, from, next) => {
+  const { name, params, query } = to;
+  if (isMobile()) {
+    if (!name.startsWith('m.')) {
+      next({ name: `m.${name}`, params, query });
+    }
+  } else if (name.startsWith('m.')) {
+    next({ name: name.substr(2), params, query });
+  }
   if(to.matched.some(res => res.meta.requireAuth)){
     const { token } = store.state;
     if(token){
