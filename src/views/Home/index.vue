@@ -1,6 +1,6 @@
 <template>
   <div>
-      {{ getUsername }},欢迎来到Home
+      {{ username }},欢迎来到Home
       <p>{{total}}</p>
       <el-button type="primary" @click="handleAdd">修改</el-button>
   </div>
@@ -12,8 +12,14 @@ import { mapState, mapMutations } from 'vuex'
     name:'Home',
     computed: {
       ...mapState('order', ['total']),
+      ...mapState('user', ['token', 'username']),
       getUsername() {
         return this.$store.state.username;
+      }
+    },
+    mounted () {
+      if(!this.token){
+        this.$router.push('/login')
       }
     },
     methods: {
